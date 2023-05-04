@@ -1,0 +1,406 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>沈阳交通大数据分析平台</title>
+<!--设置是否为缩放模式 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 新 Bootstrap 核心 CSS 文件 --> 
+<link rel="stylesheet" type="text/css" href="https://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 --> 
+<script src="js/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 --> 
+<script src="js/bootstrap.min.js"></script>
+<!--echarts JS-->
+<script src="js/echarts.min.js"></script>
+<!-- 轮播swiper文件 -->
+<link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+<script src="js/swiper.min.js"></script>
+<!--界面样式-->
+<script src="js/visual.js"></script>
+<script src="js/chartMap.js"></script>
+<script src="js/busAndsub_data.js"></script>
+<script src="js/shengyang_.js"></script>
+<script src="js/shengyangMap.js"></script>
+<link rel="stylesheet" type="text/css" href="css/visual.css">
+
+</head>
+<body class="ksh">
+	<div id="load">
+		<div class="load_img"><!-- 加载动画 -->
+			<img class="jzxz1" src="images/jzxz1.png">
+			<img class="jzxz2" src="images/jzxz2.png">
+		</div>
+	</div>
+	<div class="head_top">
+		<img class="img-responsive" src="images/jcdsj_logo.gif">
+	</div>
+	<div class="visual">
+		<div class="visual_left">
+			<div class="visual_box">
+				<div class="visual_title">
+					<span>人群密度比较</span>
+					<img src="images/ksh33.png">
+				</div>
+				<div class="visual_chart" id="main1">
+					
+				</div>
+			</div>
+			<div class="visual_box">
+				<div class="visual_title">
+					<span>人群密度预测(公交)</span>
+					<img src="images/ksh33.png">
+				</div>
+				<div class="visual_chart" id="main2">
+					
+				</div>
+			</div>
+			<div class="visual_box">
+				<div class="visual_title">
+					<span>人群密度预测(地铁)</span>
+					<img src="images/ksh33.png">
+				</div>
+				<div class="visual_chart" id="main03yy">
+
+				</div>
+			</div>
+		</div>
+		<div class="visual_con">
+			<div class="visual_conTop">
+				<div class="visual_conTop_box visual_conTop1" onclick="window.open('http://www.shenyang.gov.cn/index.html')">
+					<div>
+						<h3>沈阳市人群密度</h3>
+						<p>&nbsp;10.03</p>
+						<div class="conTop_smil">
+							<a class="sz">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>实时</span></a>
+							<a class="xd">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>分析</span></a>
+						</div>
+					</div>
+				</div>
+				<div class="visual_conTop_box visual_conTop2" onclick="window.open('http://www.shenyang.gov.cn/index.html')">
+					<div>
+						<h3>查看站点人群密度</h3>
+						<p>&nbsp;10.03</p>
+						<div class="conTop_smil">
+							<a class="xd">&nbsp;&nbsp;&nbsp;&nbsp;站点人流</a>
+							<a class="xf">&nbsp;&nbsp;&nbsp;&nbsp;趋势分析</a>
+						</div>
+					</div>
+				</div>
+				<div class="visual_conTop_box visual_conTop1" onclick="window.open('http://www.shenyang.gov.cn/index.html')">
+					<div>
+						<h3>政府门户网站</h3>
+						<p>政</p>
+						<div class="conTop_smil">
+							<a class="bk">沈阳市政</a>
+							<a class="sz">门户信息网站</a>
+						</div>
+					</div>
+				</div>
+				<div class="visual_conTop_box visual_conTop2" onclick="window.open('http://www.shenyang.gov.cn/index.html')">
+					<div>
+						<h3>查看人群出行方式</h3>
+						<p>&nbsp;&nbsp;10.03</p>
+						<div class="conTop_smil">
+							<a class="xf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人群出行方式</a>
+							<a class="bl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;动态变化效果</a>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="visual_conBot">
+				<img class="visual_conBot_l" src="images/ksh42.png">
+				<img class="visual_conBot_2" src="images/ksh43.png">
+				<img class="visual_conBot_3" src="images/ksh44.png">
+				<img class="visual_conBot_4" src="images/ksh45.png">
+				<div class="visual_chart_text">
+					<h1>驻留分析+大数据</h1>
+					<h2>沈阳市交通大数据分析平台</h2>
+				</div>
+				<div class="visual_chart" id="main8"></div>
+				<div class="visual_conBot_bot">
+					<div class="visualSssf_left">
+						<h3>今日实时流量</h3>
+						<a style="display:block" id="quanshi">全市数据</a>
+						<a id="faku">沈河区</a>
+						<a id="kangpin">法库县</a>
+						<a id="xingmin">新民市</a>
+						<a id="hunnan">浑南区</a>
+						<a id="tiexi">铁西区</a>
+						<a id="huanggu">皇姑区</a>
+						<a id="heping" class="active">和平区</a>
+						<a id="yuhong">于洪区</a>
+						<a id="shenbei">沈北新区</a>
+					</div>
+					<div class="visualSssf_right">
+						<div class="visualSssf_right_box" id="main5"></div>
+						<div class="visualSssf_right_box" id="main6"></div>
+						<div class="visualSssf_right_box" id="main7"></div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		<div class="visual_right">
+			<div class="visual_box">
+				<div class="visual_title">
+					<span>实时人群密度比较-各区县</span>
+					<img src="images/ksh33.png">
+				</div>
+				<div class="visual_chart" id="main3"></div>
+			</div>
+			<div class="visual_box visualSfzsfl">
+				<div class="visual_title">
+					<span>和平区人群密度统计</span>
+					<img src="images/ksh33.png">
+				</div>
+				<div class="visual_chart" id="main9"></div>
+			</div>
+			<div class="visual_box">
+				<div class="visual_title">
+					<span>各区县人群密度统计</span>
+					<img src="images/ksh33.png">
+				</div>
+				<div class="visual_chart" id="main4"></div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			//皇姑区今日流量
+			$('#huanggu').click(function f(){
+				option5.series[0].data[0].value=40;
+				option5.series[0].data[1].value=60;
+				option6.series[0].data[0].value=20;
+				option6.series[0].data[1].value=80;
+				option7.series[0].data[0].value=10;
+				option7.series[0].data[1].value=90;
+				myChart5.setOption(option5);
+				myChart6.setOption(option6);
+				myChart7.setOption(option7);
+			});
+			//和平区今日流量
+			$('#heping').click(function f(){
+				option5.series[0].data[0].value=75;
+				option5.series[0].data[1].value=25;
+				option6.series[0].data[0].value=10;
+				option6.series[0].data[1].value=90;
+				option7.series[0].data[0].value=15;
+				option7.series[0].data[1].value=85;
+				myChart5.setOption(option5);
+				myChart6.setOption(option6);
+				myChart7.setOption(option7);
+			});
+			$('#shenbei').click(function f(){
+				option5.series[0].data[0].value=60;
+				option5.series[0].data[1].value=40;
+				option6.series[0].data[0].value=32;
+				option6.series[0].data[1].value=68;
+				option7.series[0].data[0].value=8;
+				option7.series[0].data[1].value=92;
+				myChart5.setOption(option5);
+				myChart6.setOption(option6);
+				myChart7.setOption(option7);
+			});
+			$('#faku').click(function f(){
+				option5.series[0].data[0].value=33;
+				option5.series[0].data[1].value=67;
+				option6.series[0].data[0].value=12;
+				option6.series[0].data[1].value=88;
+				option7.series[0].data[0].value=90;
+				option7.series[0].data[1].value=10;
+				myChart5.setOption(option5);
+				myChart6.setOption(option6);
+				myChart7.setOption(option7);
+			});
+			$('#kangpin').click(function f(){
+				option5.series[0].data[0].value=55;
+				option5.series[0].data[1].value=45;
+				option6.series[0].data[0].value=10;
+				option6.series[0].data[1].value=90;
+				option7.series[0].data[0].value=35;
+				option7.series[0].data[1].value=65;
+				myChart5.setOption(option5);
+				myChart6.setOption(option6);
+				myChart7.setOption(option7);
+			});
+			$('#xingmin').click(function f(){
+				option5.series[0].data[0].value=60;
+				option5.series[0].data[1].value=40;
+				option6.series[0].data[0].value=20;
+				option6.series[0].data[1].value=85;
+				option7.series[0].data[0].value=20;
+				option7.series[0].data[1].value=60;
+				myChart5.setOption(option5);
+				myChart6.setOption(option6);
+				myChart7.setOption(option7);
+			});
+			$('#hunnan').click(function f(){
+				option5.series[0].data[0].value=42;
+				option5.series[0].data[1].value=20;
+				option6.series[0].data[0].value=18;
+				option6.series[0].data[1].value=30;
+				option7.series[0].data[0].value=40;
+				option7.series[0].data[1].value=90;
+				myChart5.setOption(option5);
+				myChart6.setOption(option6);
+				myChart7.setOption(option7);
+			});
+			$('#tiexi').click(function f(){
+				option5.series[0].data[0].value=32;
+				option5.series[0].data[1].value=68;
+				option6.series[0].data[0].value=23;
+				option6.series[0].data[1].value=77;
+				option7.series[0].data[0].value=45;
+				option7.series[0].data[1].value=65;
+				myChart5.setOption(option5);
+				myChart6.setOption(option6);
+				myChart7.setOption(option7);
+			});
+			$('#yuhong').click(function f(){
+				option5.series[0].data[0].value=86;
+				option5.series[0].data[1].value=14;
+				option6.series[0].data[0].value=5;
+				option6.series[0].data[1].value=95;
+				option7.series[0].data[0].value=9;
+				option7.series[0].data[1].value=91;
+				myChart5.setOption(option5);
+				myChart6.setOption(option6);
+				myChart7.setOption(option7);
+			});
+			$('#quanshi').click(function f(){
+				option5.series[0].data[0].value=36;
+				option5.series[0].data[1].value=64;
+				option6.series[0].data[0].value=19;
+				option6.series[0].data[1].value=81;
+				option7.series[0].data[0].value=45;
+				option7.series[0].data[1].value=55;
+				myChart5.setOption(option5);
+				myChart6.setOption(option6);
+				myChart7.setOption(option7);
+			});
+
+			var a=$('.visualSssf_left a')
+			for(var i=0;i<a.length;i++){
+				a[i].index=i;
+				a[i].onclick=function(){
+					for(var i=0;i<a.length;i++){
+						a[i].className=''
+						}
+					this.className='active'
+				}
+			}
+
+			var sfzcllH=$('.sfzcll_box').height()
+			var sfzcllHtwo=sfzcllH-2
+			$('.sfzcll_box').css('line-height',sfzcllH+'px')
+			$('.sfzcll_smallBk>div').css('line-height',sfzcllHtwo+'px')
+
+			//删除加载动画
+			$('#load').fadeOut(1000)
+    		setTimeout(function(){    
+    			$('#load').remove()
+    		}
+    		,1100);
+		})
+
+	//公交、地铁下的人群密度比较
+	var myChart2 = echarts.init(document.getElementById('main1'));
+	myChart2.setOption(option2,true);
+	var ans=0
+	var int0 = self.setInterval("clockTime01()",3000);
+	function clockTime01() {
+		var t_data=[];
+		var sub_data=[];
+		var bus_data=[];
+		for(var i=ans;i<ans+120;i++){
+			t_data.push(b_s_data[i].time);
+			sub_data.push(b_s_data[i].sub_density);
+			bus_data.push(b_s_data[i].bus_density);
+		}
+		option2.xAxis[0].data=t_data;
+		option2.series[0].data=bus_data;
+		option2.series[1].data=sub_data;
+		myChart2.setOption(option2);
+		ans=ans+120;
+		if(ans>=1440){
+			ans=0;
+		}
+	}
+
+	//人群密度预测--公交
+	var myChart1 = echarts.init(document.getElementById('main2'));
+	myChart1.setOption(option1);
+
+	//人群密度预测--地铁
+	var myCHart033yy = echarts.init(document.getElementById('main03yy'));
+	myCHart033yy.setOption(option033yy);
+
+	//各地区实时人群密度比较
+	var myChart3 = echarts.init(document.getElementById('main3'));
+	myChart3.setOption(option3);
+	//总人群密度统计
+	var myChart4 = echarts.init(document.getElementById('main4'));
+	myChart4.setOption(option4);
+	//今日实时流量
+	var myChart5 = echarts.init(document.getElementById('main5'));
+	myChart5.setOption(option5);
+	var myChart6 = echarts.init(document.getElementById('main6'));
+	myChart6.setOption(option6);
+	var myChart7 = echarts.init(document.getElementById('main7'));
+	myChart7.setOption(option7);
+    //中间地图
+	var myChart8 = echarts.init(document.getElementById('main8'));
+	myChart8.setOption(option_shengyangMap);
+	//和平区人群密度统计
+	var myChart9 = echarts.init(document.getElementById('main9'));
+	myChart9.setOption(option_heping_density);
+
+	var c_ans=0;
+	var int1 = self.setInterval("clockTime02()",900);
+		function clockTime02() {
+			var time_data=[];
+			var data1=[];
+			var data2=[];
+			for(var i=c_ans;i<c_ans+7;i++){
+				time_data.push(heping_density_data[i].time);
+				data1.push(heping_density_data[i].cnt);
+				data2.push(heping_density_data[i].cnt);
+			}
+			option_heping_density.xAxis[0].data=time_data;
+			option_heping_density.series[0].data=data1;
+			option_heping_density.series[1].data=data2;
+			myChart9.setOption(option_heping_density);
+			c_ans=c_ans+7;
+			if(c_ans>=1435){
+				c_ans=0;
+			}
+		}
+
+		var all_cnt=0;
+		var int2 = self.setInterval("clockTime03()",1000);
+		function clockTime03() {
+			option3.title.text=heping_density_data[all_cnt].time;
+			option3.series[0].data[0].value=heping_density_data[all_cnt].cnt;
+			option3.series[0].data[1].value=shenhe_density_data[all_cnt].cnt;
+			option3.series[0].data[2].value=dadong_density_data[all_cnt].cnt;
+			option3.series[0].data[3].value=huanggu_density_data[all_cnt].cnt;
+			option3.series[0].data[4].value=tiexi_density_data[all_cnt].cnt;
+			option3.series[0].data[5].value=sujiatun_density_data[all_cnt].cnt;
+			option3.series[0].data[6].value=hunnan_density_data[all_cnt].cnt;
+			option3.series[0].data[7].value=shenbeixin_density_data[all_cnt].cnt;
+			option3.series[0].data[8].value=yuhong_density_data[all_cnt].cnt;
+			option3.series[0].data[9].value=faku_density_data[all_cnt].cnt;
+			option3.series[0].data[10].value=xinming_density_data[all_cnt].cnt;
+			option3.series[0].data[11].value=qita_density_data[all_cnt].cnt;
+			myChart3.setOption(option3);
+			all_cnt++;
+			if(all_cnt>=1440){
+				all_cnt=0;
+			}
+		}
+	</script>
+</body>
+</html>
